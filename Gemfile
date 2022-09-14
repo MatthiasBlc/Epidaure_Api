@@ -51,5 +51,6 @@ gem "devise", "~> 4.8"
 gem "devise-jwt", "~> 0.9.0"
 #Back end gem
 gem "rack-cors", "~> 1.1"
+gem "table_print"
 #Other gem
 gem 'dotenv-rails'
