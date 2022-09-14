@@ -13,9 +13,14 @@ Practice.create!(
   name:"Practice 1"
 )
 
-User.create!(
-  email:"test@test.fr",
-  password:"123456",
-  password_confirmation:"123456",
-  practice:Practice.first
-)
+mail = ["collaborator@test.fr","holder@test.fr","administrator@test.fr"]
+
+3.times do |i| 
+  User.create!(
+   email:mail[i],
+   password:"123456",
+   password_confirmation:"123456",
+   practice:Practice.first,
+   status:i
+  )
+end

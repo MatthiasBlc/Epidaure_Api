@@ -10,4 +10,9 @@ class User < ApplicationRecord
   #  :recoverable, :rememberable, :validatable
 
   validates :email, presence: true
+  enum status: {
+    collaborator: 0,
+    holder: 1,
+    administrator: 2
+  }, _prefix: true
 end
