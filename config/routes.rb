@@ -1,5 +1,9 @@
 
 Rails.application.routes.draw do
+  resources :patients
+  resources :rooms
+  resources :time_slots
+  resources :practices
   devise_for :users,
              controllers: {
                sessions: 'users/sessions',
