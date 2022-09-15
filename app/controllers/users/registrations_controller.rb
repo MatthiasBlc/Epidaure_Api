@@ -1,7 +1,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   respond_to :json
 
-  # skip_before_action :require_no_authentication, only: %i[create]
+  skip_before_action :require_no_authentication, only: %i[create]
 
   def create
     @user = User.new(user_params)
