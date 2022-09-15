@@ -1,6 +1,8 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   respond_to :json
 
+  skip_before_action :require_no_authentication, only: %i[create]
+
   private
 
   def respond_with(resource, _opts = {})
