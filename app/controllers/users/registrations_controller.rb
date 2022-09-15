@@ -5,9 +5,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
     @user = User.new(user_params)
-    puts '+++++++++++++++++++++++++++++++++++'
-    puts user_params
-    puts '+++++++++++++++++++++++++++++++++++'
 
     if @user.save
       render json: @user, status: :created
