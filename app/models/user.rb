@@ -15,4 +15,10 @@ class User < ApplicationRecord
     holder: 1,
     administrator: 2
   }, _prefix: true
+  after_create :welcome_send
+
+  def welcome_send
+    UserMailer.welcome_email(self).deliver_now
+  end
+  
 end

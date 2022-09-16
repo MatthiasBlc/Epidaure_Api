@@ -1,13 +1,10 @@
-class UserMailer < Devise::Mailer
-  default from: "test@mail.fr" 
-  # before_action :add_inline_attachments!
- 
-  def reset_password_instructions(record, token, opts={})
-    super
+class UserMailer < ApplicationMailer
+
+  def welcome_email(user)
+
+    @user = user
+    @url = 'https://epidaure-preprod.herokuapp.com/'
+    mail(to: @user.email, subject: 'Bienvenue chez nous !')
+
   end
- 
-  private
-  # def add_inline_attachments!
-  #   attachments.inline['your-logo.png'] = File.read(Rails.root.join('app/assets/images/your-logo.png'))
-  # end
- end
+end
