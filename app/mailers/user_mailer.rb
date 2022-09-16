@@ -1,4 +1,6 @@
-class UserMailer < ApplicationMailer
+class UserMailer < Devise::Mailer
+
+  default from :'epidaure.contact@gmail.com'
 
   def welcome_email(user)
     @user = user
@@ -6,4 +8,8 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email, subject: 'Bienvenue chez nous !')
   end
 
+  def reset_password_instructions(record, token, opts={})
+    super
+  end
+  
 end
