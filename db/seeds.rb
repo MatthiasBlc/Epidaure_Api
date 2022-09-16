@@ -14,7 +14,7 @@ Practice.create!(
   name: 'Practice 1'
 )
 
-mail = ['collaborator@test.fr', 'holder@test.fr', 'administrator@test.fr']
+mail = ['collaborator@yopmail.com', 'holder@yopmail.com', 'administrator@yopmail.com']
 
 3.times do |i|
   User.create!(
