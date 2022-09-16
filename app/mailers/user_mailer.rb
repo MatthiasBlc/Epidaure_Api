@@ -1,6 +1,6 @@
 class UserMailer < Devise::Mailer
 
-  default from :'epidaure.contact@gmail.com'
+  default from: "epidaure.contact@gmail.com"
 
   def welcome_email(user)
     @user = user
