@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_14_084449) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_19_090813) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -57,6 +57,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_14_084449) do
     t.bigint "user_id"
     t.bigint "room_id"
     t.bigint "patient_id"
+    t.string "text"
+    t.string "start"
+    t.string "end"
+    t.string "barColor"
+    t.string "resource"
     t.index ["patient_id"], name: "index_time_slots_on_patient_id"
     t.index ["room_id"], name: "index_time_slots_on_room_id"
     t.index ["user_id"], name: "index_time_slots_on_user_id"
@@ -71,6 +76,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_14_084449) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "practice_id"
+    t.integer "status", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["practice_id"], name: "index_users_on_practice_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
