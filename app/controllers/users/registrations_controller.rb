@@ -11,7 +11,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def update
+    if @user.update(user_params)
+      render json: @user
+    else
+      render json: @user.errors, status: :unprocessable_entity
+    end
+  end
+  
   private
+
+  def set_user
+    @user = User.find(params[:id])
+  end
 
   def respond_with(resource, _opts = {})
     register_success && return if resource.persisted?
@@ -32,6 +44,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # Only allow a list of trusted parameters through.
   def user_params
-    params.require(:user).permit(:email, :password, :practice_id)
+    params.require(:user).permit(:email, :password, :user_id, :practice_id)
   end
 end

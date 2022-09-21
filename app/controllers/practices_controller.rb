@@ -10,7 +10,7 @@ class PracticesController < ApplicationController
 
   # GET /practices/1
   def show
-    render json: @practice
+    render json: @practice.as_json(include: [:users, :rooms])
   end
 
   # POST /practices
