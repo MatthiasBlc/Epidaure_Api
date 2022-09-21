@@ -18,7 +18,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       render json: @user.errors, status: :unprocessable_entity
     end
   end
-  
+
   private
 
   def set_user
