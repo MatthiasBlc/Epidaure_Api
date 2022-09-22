@@ -1,5 +1,5 @@
 class TimeSlotsController < ApplicationController
-  before_action :set_time_slot, only: %i[ show update destroy ]
+  before_action :set_time_slot, only: %i[show update destroy]
 
   # GET /time_slots
   def index
@@ -16,6 +16,8 @@ class TimeSlotsController < ApplicationController
   # POST /time_slots
   def create
     @time_slot = TimeSlot.new(time_slot_params)
+    @time_slot.user = current_user
+    @time_slot.room = Room.first
 
     if @time_slot.save
       render json: @time_slot, status: :created, location: @time_slot
@@ -39,13 +41,14 @@ class TimeSlotsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_time_slot
-      @time_slot = TimeSlot.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def time_slot_params
-      params.fetch(:time_slot, {})
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_time_slot
+    @time_slot = TimeSlot.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def time_slot_params
+    params.require(:time_slots).permit(:text, :start, :end, :barColor, :resource)
+  end
 end
