@@ -17,7 +17,6 @@ class TimeSlotsController < ApplicationController
   def create
     @time_slot = TimeSlot.new(time_slot_params)
     @time_slot.user = current_user
-    @time_slot.room = Room.first
 
     if @time_slot.save
       render json: @time_slot, status: :created, location: @time_slot
@@ -49,6 +48,6 @@ class TimeSlotsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def time_slot_params
-    params.require(:time_slots).permit(:text, :start, :end, :barColor, :resource)
+    params.require(:time_slots).permit(:text, :start, :end, :barColor, :resource, :room_id)
   end
 end
