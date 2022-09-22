@@ -9,6 +9,11 @@ class MembersController < ApplicationController
     }
   end
 
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+  end
+
   private
 
   def get_user_from_token
