@@ -10,10 +10,8 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
   get '/member-data', to: 'members#show'
-  
-  resources :contacts
-
   delete '/members/:id' => 'members#destroy', :as => :admin_destroy_user
+  resources :contacts
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
