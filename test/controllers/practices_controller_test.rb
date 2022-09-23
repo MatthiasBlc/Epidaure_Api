@@ -12,7 +12,7 @@ class PracticesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create practice" do
     assert_difference("Practice.count") do
-      post practices_url, params: { practice: { adresse: @practice.adresse, email: @practice.email, name: @practice.name } }, as: :json
+      post practices_url, params: { practice: { adress: @practice.adress, email: @practice.email, name: @practice.name } }, as: :json
     end
 
     assert_response :created
@@ -24,7 +24,7 @@ class PracticesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update practice" do
-    patch practice_url(@practice), params: { practice: { adresse: @practice.adresse, email: @practice.email, name: @practice.name } }, as: :json
+    patch practice_url(@practice), params: { practice: { adress: @practice.adress, email: @practice.email, name: @practice.name } }, as: :json
     assert_response :success
   end
 

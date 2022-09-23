@@ -1,4 +1,7 @@
 class PracticesController < ApplicationController
+  
+  before_action :authenticate_user!
+  before_action :check_if_holder?, only: %i[update]
   before_action :set_practice, only: %i[ show update destroy ]
 
   # GET /practices
@@ -26,6 +29,7 @@ class PracticesController < ApplicationController
 
   # PATCH/PUT /practices/1
   def update
+    
     if @practice.update(practice_params)
       render json: @practice
     else
@@ -39,6 +43,7 @@ class PracticesController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_practice
       @practice = Practice.find(params[:id])
@@ -46,6 +51,6 @@ class PracticesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def practice_params
-      params.require(:practice).permit(:name, :adresse, :email)
+      params.require(:practice).permit(:name, :adress, :email)
     end
 end

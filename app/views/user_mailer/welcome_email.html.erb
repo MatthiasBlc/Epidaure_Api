@@ -1,12 +1,82 @@
-<!DOCTYPE html>
-<html lang="fr">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:v="urn:schemas-microsoft-com:vml">
 <head>
-  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+  <title>HTML Email Template</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
-  <body>
-    <h1>Bonjour et merci d'avoir rejoint Epidaure, <%= @user.email %> !</h1>
-    <p>Tu t'es inscrit avec l'e-mail suivant : <%= @user.email %>.</p>
-    <p>Pour accéder à ton espace, connecte-toi sur : <%= @url %>.</p>
-    <p>À très vite !</p>
-  </body>
+<body leftmargin="0" topmargin="0">
+
+  <!-- Header with image, greetings, text and button-->
+
+  <table bgcolor="#23424a" width="100%" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td>
+          <table align="center" width="590" border="0" cellpadding="0" cellspacing="0">
+            <tbody>
+
+              <!-- horizontal space -->
+              <tr>
+                <td height="30" style="font-size:30px; line-height: 30px;">
+                  &nbsp;
+                </td>
+              </tr>
+              <!-- end of space -->
+              <tr>
+                <td height="30" style="font-size:30px; line-height: 30px;">
+                  &nbsp;
+                </td>
+              </tr>
+              <tr>
+                <td align="center" style="font-family: 'Roboto', Helvetica, sans-serif; font-size:35px; text-align: center; color:#FFF; mso-line-height-rule: exactly; line-height: 25px;">
+                  Bonjour et merci d'avoir rejoint Epidaure, <%= @user.email %> !
+                </td>
+              </tr>
+              <tr>
+                <td height="30" style="font-size:30px; line-height: 30px;">
+                  &nbsp;
+                </td>
+              </tr>
+              <tr>
+                <td align="center" style="font-family: 'Roboto', Helvetica, sans-serif; text-align: center; color:#FFF; mso-line-height-rule: exactly; line-height: 30px;">
+                Pour accéder à ton espace, connecte-toi sur : 
+                </td>
+              </tr>
+              <tr>
+                <td height="30" style="font-size:30px; line-height: 30px;">
+                  &nbsp;
+                </td>
+              </tr>
+              <tr>
+                <td align="center">
+                  <table align="center" width="240" cellpadding="0" cellspacing="0">
+                    <tbody>
+                      <tr>
+                        <td align="center" bgcolor="#38cfd9" height="60" style="border-radius: 100px;">
+                         <% homepage = @url %>
+                            <%= link_to homepage do %>
+                               Epidaure 
+                            <% end %>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td height="30" style="font-size:30px; line-height: 30px;">
+                  &nbsp;
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</body>
 </html>

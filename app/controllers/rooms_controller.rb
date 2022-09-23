@@ -1,10 +1,12 @@
 class RoomsController < ApplicationController
+
+  before_action :authenticate_user!
+  before_action :check_if_holder?, only: %i[create update destroy]
   before_action :set_room, only: %i[ show update destroy ]
 
   # GET /rooms
   def index
-    @rooms = Room.all
-
+    @rooms = current_user.rooms
     render json: @rooms
   end
 
@@ -15,6 +17,7 @@ class RoomsController < ApplicationController
 
   # POST /rooms
   def create
+
     @room = Room.new(room_params)
 
     if @room.save
@@ -26,6 +29,7 @@ class RoomsController < ApplicationController
 
   # PATCH/PUT /rooms/1
   def update
+    
     if @room.update(room_params)
       render json: @room
     else
@@ -40,6 +44,7 @@ class RoomsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+
     def set_room
       @room = Room.find(params[:id])
     end
@@ -48,4 +53,5 @@ class RoomsController < ApplicationController
     def room_params
       params.require(:room).permit(:name, :practice_id)
     end
+
 end

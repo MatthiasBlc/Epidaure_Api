@@ -2,6 +2,7 @@ class User < ApplicationRecord
   belongs_to :practice
   has_many :time_slots, dependent: :destroy
   has_many :patients
+  delegate :rooms, to: :practice
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable,
@@ -9,7 +10,7 @@ class User < ApplicationRecord
          jwt_revocation_strategy: JwtDenylist
  
 
-  validates :email, presence: true
+  validates :email, presence: true, uniqueness: true, format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/ } 
   enum status: {
     collaborator: 0,
     holder: 1,

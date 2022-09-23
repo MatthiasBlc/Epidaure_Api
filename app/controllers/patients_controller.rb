@@ -1,4 +1,6 @@
 class PatientsController < ApplicationController
+  
+  before_action :authenticate_user!
   before_action :set_patient, only: %i[ show update destroy ]
 
   # GET /patients
@@ -39,6 +41,24 @@ class PatientsController < ApplicationController
   end
 
   private
+
+  def is_holder
+    if user_signed_in? && current_user.status_holder?
+      return true
+    end
+  end
+
+  def is_admin
+    if user_signed_in? && current_user.status_administrator?
+      return true
+    end
+  end
+
+  def is_collaborator
+    if user_signed_in? && current_user.status_collaborator?
+      return true
+    end
+  end
     # Use callbacks to share common setup or constraints between actions.
     def set_patient
       @patient = Patient.find(params[:id])
