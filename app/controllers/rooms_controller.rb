@@ -1,6 +1,7 @@
 class RoomsController < ApplicationController
+  # before_action :authenticate_user!
+  before_action :holder, only: %i[update destroy create]
   before_action :set_room, only: %i[ show update destroy ]
-
   # GET /rooms
   def index
     @rooms = Room.all
@@ -40,6 +41,10 @@ class RoomsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def holder
+      user_signed_in? && current_user.status_holder?
+    end
+
     def set_room
       @room = Room.find(params[:id])
     end
@@ -48,4 +53,5 @@ class RoomsController < ApplicationController
     def room_params
       params.require(:room).permit(:name, :practice_id)
     end
+
 end

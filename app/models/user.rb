@@ -9,7 +9,7 @@ class User < ApplicationRecord
          jwt_revocation_strategy: JwtDenylist
  
 
-  validates :email, presence: true
+  validates :email, presence: true, uniqueness: true, format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/ } 
   enum status: {
     collaborator: 0,
     holder: 1,

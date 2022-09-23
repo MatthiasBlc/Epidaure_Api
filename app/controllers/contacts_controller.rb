@@ -1,4 +1,6 @@
 class ContactsController < ApplicationController
+  # before_action :authenticate_user!
+  
     def new
       @contact = Contact.new
     end
@@ -18,4 +20,4 @@ class ContactsController < ApplicationController
     def contact_params
       params.require(:contact).permit(:first_name, :last_name, :email, :content)
     end
-  end
+end
