@@ -5,71 +5,122 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+require 'faker'
+
 TimeSlot.destroy_all
+ActiveRecord::Base.connection.reset_pk_sequence!('timeslots')
 Room.destroy_all
+ActiveRecord::Base.connection.reset_pk_sequence!('rooms')
 Patient.destroy_all
+ActiveRecord::Base.connection.reset_pk_sequence!('patients')
 User.destroy_all
+ActiveRecord::Base.connection.reset_pk_sequence!('users')
 Practice.destroy_all
+ActiveRecord::Base.connection.reset_pk_sequence!('practices')
 
-Practice.create!(
-  name: 'Practice 1'
-)
-
-mail = ['collaborator@yopmail.com', 'holder@yopmail.com', 'administrator@yopmail.com']
-
-3.times do |i|
-  User.create!(
-    email: mail[i],
-    password: '123456',
-    password_confirmation: '123456',
-    practice: Practice.first,
-    status: i
-  )
-end
+resource = ["M","T","W","Th","F","S","Su"]
 
 2.times do |i|
-  Room.create!(
-    name: "bureau #{i}",
-    practice: Practice.first
+  Practice.create!(
+  name:Faker::Address.street_name,
+  adress:Faker::Address.full_address,
+  email:Faker::Internet.email
+)
+end
+
+practice = Practice.all
+2.times do |i|
+  User.create!(
+    email: "holder#{i}@yopmail.com",
+    password: '123456',
+    password_confirmation: '123456',
+    practice: practice[i],
+    status: 1
   )
 end
 
+6.times do |i|
+  User.create!(
+    email: "collaborator#{i}@yopmail.com",
+    password: '123456',
+    password_confirmation: '123456',
+    practice: Practice.all.sample,
+    status: 0
+  )
+end
+
+
+6.times do |i|
+  Room.create!(
+    name: "Salle #{i}",
+    practice: Practice.all.sample
+  )
+end
+
+selectedUser = User.all.sample
+selectedRoom = Room.find_by(practice_id:selectedUser.practice.id)
 TimeSlot.create!(
-  user: User.first,
-  room: Room.first,
-  text: 'Event 1',
-  start: '2022-09-16T10:30:00',
+  user: selectedUser,
+  room: selectedRoom,
+  text: Faker::Name.name   ,
+  start:"2022-09-16T09:30:00",
   end: '2022-09-16T13:00:00',
-  barColor: '#fcb711',
-  resource: 'M'
+  barColor: Faker::Color.hex_color,
+  resource: resource.sample
 )
 
+selectedUser = User.all.sample
+selectedRoom = Room.find_by(practice_id:selectedUser.practice.id)
 TimeSlot.create!(
-  user: User.first,
-  room: Room.first,
-  text: "Event 2",
-  start: "2022-09-16T09:30:00",
-  end: "2022-09-16T11:30:00",
-  barColor: "#f37021",
-  resource: "T"
+  user: selectedUser,
+  room: selectedRoom,
+  text: Faker::Name.name   ,
+  start:"2022-09-16T09:30:00",
+  end: '2022-09-16T13:00:00',
+  barColor: Faker::Color.hex_color,
+  resource: resource.sample
 )
-
+selectedUser = User.all.sample
+selectedRoom = Room.find_by(practice_id:selectedUser.practice.id)
 TimeSlot.create!(
-  user: User.first,
-  room: Room.first,
-  text: "Event 3",
-  start: "2022-09-16T12:00:00",
-  end: "2022-09-16T15:00:00",
-  barColor: "#cc004c",
-  resource: "T"
+  user: selectedUser,
+  room: selectedRoom,
+  text: Faker::Name.name   ,
+  start:"2022-09-16T09:30:00",
+  end: '2022-09-16T13:00:00',
+  barColor: Faker::Color.hex_color,
+  resource: resource.sample
 )
-
+selectedUser = User.all.sample
+selectedRoom = Room.find_by(practice_id:selectedUser.practice.id)
 TimeSlot.create!(
-  user: User.first,
-  room: Room.first,
-  text: "Event 4",
-  start: "2022-09-16T11:30:00",
-  end: "2022-09-16T14:30:00",
-  barColor: "#6460aa",
-  resource: "W"
+  user: selectedUser,
+  room: selectedRoom,
+  text: Faker::Name.name   ,
+  start:"2022-09-16T09:30:00",
+  end: '2022-09-16T13:00:00',
+  barColor: Faker::Color.hex_color,
+  resource: resource.sample
+)
+selectedUser = User.all.sample
+selectedRoom = Room.find_by(practice_id:selectedUser.practice.id)
+TimeSlot.create!(
+  user: selectedUser,
+  room: selectedRoom,
+  text: Faker::Name.name   ,
+  start:"2022-09-16T09:30:00",
+  end: '2022-09-16T13:00:00',
+  barColor: Faker::Color.hex_color,
+  resource: resource.sample
+)
+selectedUser = User.all.sample
+selectedRoom = Room.find_by(practice_id:selectedUser.practice.id)
+TimeSlot.create!(
+  user: selectedUser,
+  room: selectedRoom,
+  text: Faker::Name.name   ,
+  start:"2022-09-16T09:30:00",
+  end: '2022-09-16T13:00:00',
+  barColor: Faker::Color.hex_color,
+  resource: resource.sample
 )

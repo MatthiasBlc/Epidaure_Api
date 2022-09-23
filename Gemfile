@@ -55,3 +55,4 @@ gem "rack-cors", "~> 1.1"
 gem "table_print"
 #Other gem
 gem 'dotenv-rails'
+gem 'faker'

@@ -2,6 +2,7 @@ class User < ApplicationRecord
   belongs_to :practice
   has_many :time_slots, dependent: :destroy
   has_many :patients
+  delegate :rooms, to: :practice
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable,
