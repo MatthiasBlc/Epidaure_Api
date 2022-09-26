@@ -4,7 +4,7 @@ class UserMailer < Devise::Mailer
 
   def welcome_email(user)
     @user = user
-    @url = 'https://epidaure-preprod.herokuapp.com/'
+    @url = 'https://epidaure.herokuapp.com/'
     mail(to: @user.email, subject: 'Bienvenue chez nous !')
   end
 
